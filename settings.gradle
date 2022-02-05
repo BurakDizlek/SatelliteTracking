@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "SatelliteTracking"
 include ':app'
+include ':data'
