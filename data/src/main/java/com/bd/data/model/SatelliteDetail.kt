@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class SatelliteDetail(
-    val id: String,
+    val id: Int,
     @SerializedName("cost_per_launch")
     val costPerLaunch: Int,
     @SerializedName("first_flight")
