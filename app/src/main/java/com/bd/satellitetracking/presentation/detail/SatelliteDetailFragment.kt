@@ -1,19 +1,20 @@
-package com.bd.satellitetracking
+package com.bd.satellitetracking.presentation.detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.bd.satellitetracking.databinding.FragmentSecondBinding
+import com.bd.satellitetracking.R
+import com.bd.satellitetracking.databinding.FragmentSatelliteDetailBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class SatelliteDetailFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentSatelliteDetailBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -22,9 +23,9 @@ class SecondFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentSatelliteDetailBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -33,7 +34,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            //findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 
