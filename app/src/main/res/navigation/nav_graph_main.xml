@@ -11,10 +11,17 @@
         android:label="@string/satellite_list_fragment_label"
         tools:layout="@layout/fragment_satellite_list">
 
+        <action
+            android:id="@+id/action_satelliteListFragment_to_satelliteDetailFragment"
+            app:destination="@id/satelliteDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/satelliteDetailFragment"
         android:name="com.bd.satellitetracking.presentation.detail.SatelliteDetailFragment"
         android:label="@string/satellite_detail_fragment_label"
-        tools:layout="@layout/fragment_satellite_detail" />
+        tools:layout="@layout/fragment_satellite_detail">
+        <argument
+            android:name="satellite_id"
+            app:argType="integer" />
+    </fragment>
 </navigation>

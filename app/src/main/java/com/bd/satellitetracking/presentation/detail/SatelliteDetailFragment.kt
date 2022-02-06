@@ -5,26 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.bd.satellitetracking.R
+import androidx.navigation.fragment.navArgs
 import com.bd.satellitetracking.databinding.FragmentSatelliteDetailBinding
+import com.bd.satellitetracking.domain.base.BaseViewState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class SatelliteDetailFragment : Fragment() {
 
     private var _binding: FragmentSatelliteDetailBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: SatelliteDetailViewModel by viewModel()
+    private val args: SatelliteDetailFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentSatelliteDetailBinding.inflate(inflater, container, false)
         return binding.root
 
@@ -32,10 +29,17 @@ class SatelliteDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObservers()
+        viewModel.getSatelliteDetailById(args.satelliteId)
+    }
 
-        binding.buttonSecond.setOnClickListener {
-            //findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-        }
+    private fun setObservers() {
+        viewModel.satelliteDetail.observe(viewLifecycleOwner, { data ->
+            if (data is BaseViewState.Success) {
+                //todo we have detail data now
+            }
+        })
+
     }
 
     override fun onDestroyView() {

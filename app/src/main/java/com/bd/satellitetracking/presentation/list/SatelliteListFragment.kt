@@ -7,8 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bd.satellitetracking.databinding.FragmentSatelliteListBinding
 import com.bd.satellitetracking.domain.base.BaseViewState
 import com.bd.satellitetracking.presentation.MainViewModel
@@ -84,9 +84,12 @@ class SatelliteListFragment : Fragment() {
             }
         })
 
-        adapter.setOnItemClickListener {
-            Toast.makeText(requireContext(), "will be opened the next screen", Toast.LENGTH_SHORT)
-                .show()
+        adapter.setOnItemClickListener { id ->
+            findNavController().navigate(
+                SatelliteListFragmentDirections.actionSatelliteListFragmentToSatelliteDetailFragment(
+                    id
+                )
+            )
         }
     }
 
