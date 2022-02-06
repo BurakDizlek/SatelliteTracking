@@ -4,6 +4,9 @@
     <!-- Strings used for fragments for navigation -->
     <string name="satellite_list_fragment_label">Satellite List</string>
     <string name="satellite_detail_fragment_label">Satellite Detail</string>
+    <string name="active">Active</string>
+    <string name="passive">Passive</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 

@@ -4,21 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.bd.satellitetracking.R
 import com.bd.satellitetracking.databinding.FragmentSatelliteListBinding
+import com.bd.satellitetracking.domain.base.BaseViewState
+import com.bd.satellitetracking.utils.addItemDecoration
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class SatelliteListFragment : Fragment() {
 
     private var _binding: FragmentSatelliteListBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+
+    private val viewModel: SatelliteListViewModel by viewModel()
+    private val adapter = SatelliteListAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,10 +29,31 @@ class SatelliteListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-         //   findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment) //todo will add a parameter here!
+        binding.recyclerView.apply {
+            addItemDecoration()
+            setHasFixedSize(true)
+            adapter = this@SatelliteListFragment.adapter
         }
+
+        adapter.setOnItemClickListener {
+            Toast.makeText(requireContext(), "will be opened the next screen", Toast.LENGTH_SHORT)
+                .show()
+        }
+
+        viewModel.satelliteList.observe(viewLifecycleOwner, { data ->
+            when (data) {
+                is BaseViewState.Success -> {
+                    adapter.setData(data.data)
+                }
+                is BaseViewState.Error -> {
+                }
+                is BaseViewState.Loading -> {
+                }
+                is BaseViewState.NoData -> {
+                }
+            }
+        })
+        viewModel.getSatelliteList()
     }
 
     override fun onDestroyView() {
