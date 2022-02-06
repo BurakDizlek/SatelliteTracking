@@ -22,4 +22,28 @@
     <style name="Theme.SatelliteTracking.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.SatelliteTracking.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SmallTextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <style name="NormalTextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="NormalTextAppearance.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="LargeTextAppearance">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+
+    <style name="LargeTextAppearance.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

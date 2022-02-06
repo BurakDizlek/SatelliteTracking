@@ -6,6 +6,7 @@
     <string name="satellite_detail_fragment_label">Satellite Detail</string>
     <string name="active">Active</string>
     <string name="passive">Passive</string>
+    <string name="search_hint">Search</string>
 
     <string name="next">Next</string>
     <string name="previous">Previous</string>

@@ -11,13 +11,17 @@
 
         <EditText
             android:id="@+id/edt_search_bar"
+            style="@style/NormalTextAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_large"
+            android:layout_marginTop="@dimen/margin_xlarge"
             android:background="@drawable/bg_search_bar"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="@dimen/margin_large"
             android:gravity="center_vertical"
+            android:hint="@string/search_hint"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

@@ -41,17 +41,21 @@
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_name"
+                    style="@style/NormalTextAppearance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{data.name}"
+                    android:textColor="@{data.active ? @color/black : @color/light_black}"
                     tools:text="Dragon-1" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tv_state"
+                    style="@style/NormalTextAppearance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_xsmall"
                     android:text="@{data.active ? @string/active : @string/passive}"
+                    android:textColor="@{data.active ? @color/black : @color/light_black}"
                     tools:text="Active" />
 
             </LinearLayout>
