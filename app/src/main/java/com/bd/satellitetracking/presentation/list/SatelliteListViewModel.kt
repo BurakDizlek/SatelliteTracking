@@ -14,15 +14,19 @@ class SatelliteListViewModel(
     private val getSatelliteListUseCase: GetSatelliteListUseCase
 ) : ViewModel() {
 
+    private var originalSatelliteList = arrayListOf<Satellite>()
+
     private val _satelliteList = MutableLiveData<BaseViewState<List<Satellite>>>()
     val satelliteList: LiveData<BaseViewState<List<Satellite>>> = _satelliteList
 
     fun getSatelliteList() {
         _satelliteList.postValue(BaseViewState.Loading)
+        originalSatelliteList.clear()
         viewModelScope.launch {
             try {
                 getSatelliteListUseCase.invoke().collect { list ->
                     if (list.isNotEmpty()) {
+                        originalSatelliteList.addAll(list)
                         _satelliteList.postValue(BaseViewState.Success(data = list))
                     } else {
                         _satelliteList.postValue(BaseViewState.NoData("There is no data."))
@@ -32,5 +36,12 @@ class SatelliteListViewModel(
                 _satelliteList.postValue(BaseViewState.Error(message = e.message.orEmpty()))
             }
         }
+    }
+
+    fun searchText(text: String) {
+        val filteredList = originalSatelliteList.filter { it.name.contains(text, ignoreCase = true) }
+        _satelliteList.postValue(
+            BaseViewState.Success(data = filteredList)
+        )
     }
 }
