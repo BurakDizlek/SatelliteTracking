@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bd.satellitetracking.databinding.FragmentSatelliteListBinding
 import com.bd.satellitetracking.domain.base.BaseViewState
+import com.bd.satellitetracking.presentation.MainViewModel
 import com.bd.satellitetracking.utils.addItemDecoration
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SatelliteListFragment : Fragment() {
@@ -17,6 +19,7 @@ class SatelliteListFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: SatelliteListViewModel by viewModel()
+    private val mainViewModel: MainViewModel by sharedViewModel()
     private val adapter = SatelliteListAdapter()
 
     override fun onCreateView(
@@ -41,6 +44,12 @@ class SatelliteListFragment : Fragment() {
         }
 
         viewModel.satelliteList.observe(viewLifecycleOwner, { data ->
+            if (data is BaseViewState.Loading) { //Loading state control.
+                mainViewModel.showLoading()
+            } else {
+                mainViewModel.hideLoading()
+            }
+
             when (data) {
                 is BaseViewState.Success -> {
                     adapter.setData(data.data)
