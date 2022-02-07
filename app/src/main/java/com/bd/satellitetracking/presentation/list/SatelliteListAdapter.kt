@@ -10,7 +10,7 @@ class SatelliteListAdapter : RecyclerView.Adapter<SatelliteListAdapter.ViewHolde
 
     private val items = arrayListOf<Satellite>()
 
-    private var onClickListener: ((id: Int) -> Unit)? = null
+    private var onClickListener: ((id: Satellite) -> Unit)? = null
 
     fun setData(list: List<Satellite>) {
         items.clear()
@@ -18,7 +18,7 @@ class SatelliteListAdapter : RecyclerView.Adapter<SatelliteListAdapter.ViewHolde
         notifyDataSetChanged()
     }
 
-    fun setOnItemClickListener(clickListener: (id: Int) -> Unit) {
+    fun setOnItemClickListener(clickListener: (id: Satellite) -> Unit) {
         onClickListener = clickListener
     }
 
@@ -38,7 +38,7 @@ class SatelliteListAdapter : RecyclerView.Adapter<SatelliteListAdapter.ViewHolde
             binding.data = data
 
             binding.root.setOnClickListener {
-                onClickListener?.invoke(data.id)
+                onClickListener?.invoke(data)
             }
         }
     }

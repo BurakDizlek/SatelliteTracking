@@ -1,5 +1,6 @@
 package com.bd.satellitetracking.di
 
+import com.bd.satellitetracking.utils.DateFormatPatterns
 import com.bd.satellitetracking.utils.Shared
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -12,5 +13,5 @@ val utilModule = module {
 }
 
 private fun createGson(): Gson {
-    return GsonBuilder().setDateFormat("yyyy-MM-dd").create()
+    return GsonBuilder().setDateFormat(DateFormatPatterns.gson).create()
 }

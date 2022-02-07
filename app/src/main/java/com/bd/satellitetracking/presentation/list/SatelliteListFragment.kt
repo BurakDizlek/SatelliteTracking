@@ -84,10 +84,11 @@ class SatelliteListFragment : Fragment() {
             }
         })
 
-        adapter.setOnItemClickListener { id ->
+        adapter.setOnItemClickListener { satellite ->
             findNavController().navigate(
                 SatelliteListFragmentDirections.actionSatelliteListFragmentToSatelliteDetailFragment(
-                    id
+                    satellite.id,
+                    satellite.name
                 )
             )
         }

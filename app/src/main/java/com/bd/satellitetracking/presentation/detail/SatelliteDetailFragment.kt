@@ -22,23 +22,19 @@ class SatelliteDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSatelliteDetailBinding.inflate(inflater, container, false)
+        _binding?.lifecycleOwner = viewLifecycleOwner
         return binding.root
 
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setObservers()
-        viewModel.getSatelliteDetailById(args.satelliteId)
-        viewModel.getSatellitePositionById(args.satelliteId)
-    }
-
-    private fun setObservers() {
-        viewModel.detail.observe(viewLifecycleOwner, {
-        })
-
-        viewModel.position.observe(viewLifecycleOwner, {
-        })
+        with(viewModel) {
+            binding.vm = this
+            setTitle(args.satelliteName)
+            getSatelliteDetailById(args.satelliteId)
+            getSatellitePositionById(args.satelliteId)
+        }
     }
 
     override fun onDestroyView() {

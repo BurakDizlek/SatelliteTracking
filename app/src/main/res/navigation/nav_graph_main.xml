@@ -23,5 +23,8 @@
         <argument
             android:name="satellite_id"
             app:argType="integer" />
+        <argument
+            android:name="satellite_name"
+            app:argType="string" />
     </fragment>
 </navigation>
