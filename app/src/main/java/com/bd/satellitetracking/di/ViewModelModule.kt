@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { SatelliteListViewModel(get()) }
     viewModel { MainViewModel() }
-    viewModel { SatelliteDetailViewModel(get()) }
+    viewModel { SatelliteDetailViewModel(get(),get()) }
 }

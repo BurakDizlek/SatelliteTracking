@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bd.satellitetracking.databinding.FragmentSatelliteDetailBinding
-import com.bd.satellitetracking.domain.base.BaseViewState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SatelliteDetailFragment : Fragment() {
@@ -31,15 +30,15 @@ class SatelliteDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setObservers()
         viewModel.getSatelliteDetailById(args.satelliteId)
+        viewModel.getSatellitePositionById(args.satelliteId)
     }
 
     private fun setObservers() {
-        viewModel.satelliteDetail.observe(viewLifecycleOwner, { data ->
-            if (data is BaseViewState.Success) {
-                //todo we have detail data now
-            }
+        viewModel.detail.observe(viewLifecycleOwner, {
         })
 
+        viewModel.position.observe(viewLifecycleOwner, {
+        })
     }
 
     override fun onDestroyView() {
