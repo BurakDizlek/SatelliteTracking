@@ -7,6 +7,6 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
     single { GetSatelliteListUseCase(get()) }
-    single { GetSatelliteDetailUseCase(get()) }
+    single { GetSatelliteDetailUseCase(get(), get(), get()) }
     single { GetPositionsOfSatelliteUseCase(get()) }
 }
