@@ -7,8 +7,11 @@ import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-fun AssetManager.readAssetsFile(fileName: String): String =
+fun AssetManager.readAssetsFile(fileName: String): String = try {
     open(fileName).bufferedReader().use { it.readText() }
+} catch (e: Exception) {
+    ""
+}
 
 fun RecyclerView.addItemDecoration() {
     if (layoutManager !is LinearLayoutManager)
